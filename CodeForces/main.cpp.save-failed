@@ -1,0 +1,67 @@
+#include<bits/stdc++.h>
+#define  print  cout<<
+#define FRD freopen("in.txt", "r", stdin)
+#define FWR freopen("out.txt", "w", stdout)
+#define PI 3.14159265
+const int OO = 0x3f3f3f3f                        ;
+typedef long long ll                             ;
+using namespace std                              ;
+void fastt()                                     ;
+int dx[] = {-1,0,1,0}  ;
+int dy[] = {0,1,0,-1}  ;
+const int modd=1e9+7;
+vector<int>d;
+int m,dig,a,b;
+int memo[20][200][3];
+void solve1(int X)
+{
+    d.clear();
+    while(X)
+    {
+        d.push_back(X%10);
+        X/=10;
+    }
+}
+int solve(int ind,int s,int f)
+{
+    if(ind==d.size()&&f!=-1)return s==0;
+    int &ret = memo[ind][s][f+1];
+    if(~ret)return ret;
+    int k=9;
+    if(f>0)k=v[ind];
+    for( int i = 0 ; i <= k ; i ++ )
+    {
+        if(i<v[ind])
+        {
+            if(i==d&&(ind+1)%2==0||i!=d)
+                ret=(ret+solve(ind+1,(s+i)%m,0))%modd;
+        }
+        else
+        {
+            if(i==d&&(ind+1)%2==0||i!=d)
+            ret=(ret+solve(ind+1,(s+i)%m,1))%modd;
+        }
+    }
+    return ret%modd;
+}
+int main()
+{
+    fastt();
+    cin>>m>>dig>>a>>b;
+    --a;
+    memset(memo,-1,sizeof(memo));
+    solve1(a);
+    int ans1=solve(0,0,-1);
+    solve1(b);
+    memset(memo,-1,sizeof(memo));
+    int ans2=solve(b);
+    print ans2-ans1<<endl;
+    return 0 ;
+}
+void fastt()
+{
+    ios::
+    sync_with_stdio(false),
+                    cin.tie(0),
+                    cout.tie(0) ;
+}
