@@ -1,2 +1,2 @@
-# competitive-programming
-## my codes that i implemented it on some online judges 
+# Competitive-Programming
+## My codes that I implemented it on some online judges 
